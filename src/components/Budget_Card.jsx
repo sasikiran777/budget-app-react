@@ -1,7 +1,7 @@
 import { Button, Card, ProgressBar, Stack } from "react-bootstrap";
 import { currencyFormatter } from "../utils/utils";
 
-export default function BudgetCard({ name, amount, maxAmount, gray, showProgressBar = true }) {
+export default function BudgetCard({ name, amount, maxAmount, gray, showProgressBar = true, key }) {
     const classNames = []
     if (amount > maxAmount) {
         classNames.push('bg-danger', 'bg-opacity-10')
