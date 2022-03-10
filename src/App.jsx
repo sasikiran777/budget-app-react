@@ -1,5 +1,5 @@
 import {Container} from "react-bootstrap";
-import BudgetCard from "./components/Budget_card";
+import BudgetCard from "./components/Budget_Card";
 import Header from "./layout/Header";
 import AddBudgetModel from "./components/AddBudgetModel";
 import {useEffect, useState} from "react";
