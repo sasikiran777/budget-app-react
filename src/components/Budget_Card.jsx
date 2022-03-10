@@ -1,14 +1,22 @@
 import { Button, Card, ProgressBar, Stack } from "react-bootstrap";
 import { currencyFormatter } from "../utils/utils";
+import {useEffect} from "react";
 
-export default function BudgetCard({ name, amount, maxAmount, gray, showProgressBar = true, key }) {
+export default function BudgetCard({ name, amount, maxAmount, gray, showProgressBar = true, setShowAddExpensesModel, setBudgetId, budgetId, showButtons, setExpensesBudgetId }) {
     const classNames = []
     if (amount > maxAmount) {
         classNames.push('bg-danger', 'bg-opacity-10')
     } else if (gray) {
         classNames.push('bg-light')
     }
-  return (
+    function openExpenseModel() {
+        setBudgetId(budgetId)
+        setShowAddExpensesModel(true)
+    }
+    function openExpenseBudgetModel (budgetId) {
+        setExpensesBudgetId(budgetId)
+    }
+    return (
     <Card>
         <Card.Body className={classNames.join(" ")}>
             <Card.Title className="d-flex justify-content-between 
@@ -31,10 +39,12 @@ export default function BudgetCard({ name, amount, maxAmount, gray, showProgress
                     now={amount}
                 />
             }
-            <Stack direction="horizontal" gap={2} className="mt-4">
-                    <Button variant="outline-primary" className="ms-auto">Add Expenses</Button>
-                    <Button variant="outline-success">View Expenses</Button>
+            {
+                !showButtons && <Stack direction="horizontal" gap={2} className="mt-4">
+                    <Button variant="outline-primary" onClick={openExpenseModel} className="ms-auto">Add Expenses</Button>
+                    <Button variant="outline-success" onClick={() => openExpenseBudgetModel(budgetId)}>View Expenses</Button>
                 </Stack>
+            }
         </Card.Body>
     </Card>
   )
